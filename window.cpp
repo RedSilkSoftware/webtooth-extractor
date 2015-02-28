@@ -1066,7 +1066,7 @@ void Window::on_actionSave_Project_triggered()
 
 void Window::addFilter(QString fLabel, eFilterType ftype)
 {
-    if (this->filterData[fLabel]->isEmpty())
+    if (this->filterData.size() < 1 || this->filterData[fLabel]->isEmpty())
     {
         qDebug() << "No value found, create a new filter.";
         QVector<QString>* filterProperties = new QVector<QString>();
