@@ -13,7 +13,7 @@ Generally only pure Qt classes and datatypes have been used, so this code should
 The manual for the WebTooth-Extractor is embedded in the application. Just press F1.
 
 ## Screenshot
-Here a first screenshot of the program. More will follow. Feedback, testing and pull-requests are very welcome :D
+Here a first screenshot of the program. More will follow. Feedback, testing and pull-requests are very welcome from :girl: and :boy:.
 ![Screenshot of WebTooth-Extractor](http://i.imgur.com/MstgpLY.png)
 
 ###Licensing
