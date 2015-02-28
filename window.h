@@ -25,6 +25,7 @@ along with WebTooth-Extractor. If not, see http://www.gnu.org/licenses/ .
 #include <QMainWindow>
 #include <QUrl>
 #include <QWebElement>
+#include <QWebInspector>
 #include <qtpropertymanager.h>
 #include "jsonfile.h"
 #include "properties.h"

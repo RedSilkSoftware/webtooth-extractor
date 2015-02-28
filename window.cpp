@@ -606,7 +606,7 @@ void Window::on_pushButtonAddFilter_clicked()
     }
     else
     {
-        if (strlFilter.last().at(0) == "t" || strlFilter.last().at(0) == "T") // Tag-Filter
+        if (strlFilter.last().at(0) == 't' || strlFilter.last().at(0) == 'T') // Tag-Filter
         {
             QStringList strlCommand;
             QString sCommand = "";
@@ -655,7 +655,7 @@ void Window::on_pushButtonAddFilter_clicked()
                 this->addFilter(itm->text(), eFilterType::HTMLTAG);
             }
         }
-        else if (strlFilter.last().at(0) == "r" || strlFilter.last().at(0) == "R") // RegExp-Filter
+        else if (strlFilter.last().at(0) == 'r' || strlFilter.last().at(0) == 'R') // RegExp-Filter
         {
             QStringList strlCommand;
             QString sCommand = "";

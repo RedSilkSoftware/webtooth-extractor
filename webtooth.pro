@@ -20,6 +20,7 @@ else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/qtpropertybrowser/lib/ 
 else:unix: LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-head
 
 win32:QMAKE_CXXFLAGS_RELEASE += /GL /Ox
+unix:QMAKE_CXXFLAGS += -std=c++11
 QMAKE_LFLAGS_WINDOWS += /LTCG
 
 INCLUDEPATH += $$PWD\qtpropertybrowser\src
