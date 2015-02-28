@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>WebTooth Help</title>
+</head>
+
+<body>
+	<header>
+		<h1>WebTooth-Extractor Manual</h1>
+		<p>Copyright (c) &copy; 2015, by Patrick Scheller</p>
+	<!--
+		<nav>
+			<ul>
+				<li>Something</li>
+			</ul>
+		</nav>
+	-->
+	</header>
+	
+	<section>
+		<article>
+			<header>
+				<h3>Workflow</h3>
+				<p>Here I briefly explain the steps you need to take to get results out of a webpage. Basically you create one filter for every result-field that you wish to get in the result table after the extraction. You can use a combination of HTML tags, classes or attributes to search for it or construct a Regular Expression that browses through the bare HTML source code of the webpage. You setup all the filter you need and can extract all the data numerous times (until the structure of the webpage changes)!<br/>
+				Please also share your filters to publicly availabel webpages by uploading them to GitHub or your personal website and letting me know about them. It's not mandatory to do so though.
+				</p>
+			</header>
+			<ol>
+				<li><em>Configuration & Identification of filters:</em><p>First you should setup the configuration of this project including the webpage's URL that you want to extract data from in the properties. The webpage can also be a local HTML-File, load it with the anchor-icon.</p>
+				</li>
+				<li><em>Create new filters:</em><p>Click into the "Label of new filter" field in the "Filter List"-Dock-Window and enter as many filters with the correct syntax as you wish. You can also remove them here with the syntax below. Pressing [Enter] executes your command, no need to click the "Add new filter / Remove" button on the side. Each filtername must be unique!</p>
+				<p><b>Syntax:</b> filterlabel <b>;</b> command <b>#</b> amount</p>
+				<ul>
+					<li>
+						<em>Filterlabel or -name:</em>
+						<p>Any normal text is allowed here. Best is to name it according to the resulting field's name that you wish to get from it.</p>
+					</li>
+					<li>
+						<em>Command</em>
+						<p>The commands are either <b>R</b> for a Regular-Expression filter, <b>T</b> for a HTML-Tag filter, <b>D</b> to delete a filter with the same name or <b>D*</b> to delete several filters that match the name with the added wildcard <b>*</b>. The commands can be entered in capitals or lower caps.<br/>
+						</p>
+					</li>
+					<li>
+						<em>Amount</em>
+						<p>For the R and T command you can optionally add a <b>#</b> followed by a number to added many filters of the same type at once, they will be labelled with increasing numbers.</p>
+					</li>
+					<li>
+						<em>Examples</em>
+						<p>
+						<b>opening;t</b> &#8688; A filter with the name "opening" of type HTML-Tag is created<br/>
+						<b>totalamount;r</b> &#8688; A filter with the name "totalamount" of type Regular-Expression is created <br/>
+						<b>currency;t#5</b> &#8688; Five filters with the names currency1 to currency5 of type HTML-Tag are created<br/>
+						<b>totalamount;d</b> &#8688; The filter with the name totalamount is removed/deleted<br/>
+						<b>currentDate;r</b> &#8688; A filter with the name "currentDate" of type Regular-Expression is created <br/>
+						<b>curren*;d*</b> &#8688; All filters that begin with "curren" are removed, this includes the currency and currentDate filters too, so be extra careful with this option and save the project before.<br/>
+						</p>
+					</li>
+				</ul>
+				</li>
+				<li><em>Define Filter Criterias:</em>
+				<p>The <b>Regular-Expression</b> filter is the most straight-forward of the two types, just examine the webpage's HTML source code with the Web-Inspector and then craft a RegEx that matches best using regular Perl syntax.<br/>
+				The HTML filter offers you several options to combine. The more unique a field is the easier it is to find. If you only have 1 HTML-Tag of type "H5" then just enter this into the tag field and voilà. But usually webpages are not constructed to be easily extractable so you will often find several fields with the same tag, same class, attribute or ID. Like with a Google search, finding the right combination of search criterias is the key to success. Maybe the field you need is unique in the combination of a "A" tag and a "currency" class. In some cases even all the atrtributes won't help you extract the right field, then you can look at the parent tag to the one you need. Let's say that your "A" tag is inside a "DIV" tag (the parent) and has the class name of "trader" and with those two additional criterias you are now able to get the data you wanted.</p>
+				</li>
+				<li><em>Fish (Scan) for results</em>
+				<p>Everytime you defined a new filter you should test it and run the <em>Scan the webpage now</em> which runs through all filters and outputs the found results in the table of the Results-Dock-Window. Every scan will also save a screenshot of that webpage as it is in this moment, it is saved with the name of the project-file in the same folder/directory. You can use it later as a reference or just to check if the content/design changed.</p>
+				</li>
+				<li><em>Save the results (while you still can)</em>
+				<p>The easiest way to save the results after a scan of the webpage is to click on the anchor-icon which will copy it into the clipboard in a structured manner specially suitable for spreadsheets.<br/>
+				(Not yet implemented) You can also export the results as a CSV (comma-separated values) or a JSON file for later use into your database for example.</p>
+				</li>
+				<li><em></em><p></p></li>
+			</ol>
+		</article>
+
+		<article>
+			<header>
+				<h3>Menus</h3>
+				<p>Here the menus are briefly explained, they should mostly be self-explanatory though, else the GUI needs tuning.</p>
+			</header>
+			<ul>
+				<li>
+					<h4 class="menudoc">File</h4>
+					<ul>
+						<li>
+							<p class="menuentry"><em>New Project (Ctrl-N):</em> Creates a new project saving or discarding the existing data at your request.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Open Project (Ctrl-O):</em> Opens an existing and previously saved WebTooth project file, usually with the extension <b>.wpjson</b>.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Save Project (Ctrl-S):</em> Saves your data to a new project file or the currently active one.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Export Data...:</em> Allows you to export the resulting table you extracted as a CSV or JSON file. If you don't need that, you can also copy the table into the clipboard and paste it into your favorite spreadsheet application.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Properties (Ctrl-P):</em> Opens the properties dialog where you can define certain settings for this project.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Quit Application (Ctrl-Q):</em> Exits the application and prompts you to save your data if unsaved.</p>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="menudoc">Browser</h4>
+					<ul>
+						<li>
+							<p class="menuentry"><em>Set Zoom Factor...:</em> Enlarge or shrink the browsers view with the zoom levels of 50% (Ctrl-0), 100% (Ctrl-1), 125% (Ctrl-2), 150% (Ctrl-3)</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Set Content As Editable:</em> A checkable option that allows you to edit Text directly in the browser window. Off by default.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Show Web Inspector Dock:</em> Checkable option to display the Web-Inspector dock-window which lets you find the HTML tags you need to define the extraction-filters. On by default.</p>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="menudoc">Window</h4>
+					<ul>
+						<li>
+							<p class="menuentry"><em>Show Filter List Dock:</em> Checkable option to show or hide/close this dock-window. On by default.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Show Extraction Properties Dock:</em> Checkable option to show or hide/close this dock-window. On by default.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>Show Results Panel Dock: </em> Checkable option to show or hide/close this dock-window. On by default.</p>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="menudoc">Help</h4>
+					<ul>
+						<li>
+							<p class="menuentry"><em>Help (F1):</em> Opens this help page in the browser view.</p>
+						</li>
+						<li>
+							<p class="menuentry"><em>About (Ctrl-A)</em> Opens the About dialog window that displays info about this application, including the current version, some system informations and web-links to the webpages of products (right-click the links to copy it).</p>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</article>
+	</section>
+
+	<aside>
+		...something aside this...
+	</aside>
+
+	<footer>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pretium lobortis pharetra. Curabitur quis sem non erat imperdiet pharetra. Pellentesque at ligula tristique, hendrerit tellus vel, convallis tellus. Etiam sit amet nisi at turpis lacinia sodales eu in lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed sit amet erat nunc. Nulla vitae ligula vel felis facilisis iaculis eu sed mauris. Curabitur eget sem eget risus cursus imperdiet. Duis ac justo semper, tempor orci nec, molestie ex. Nunc dapibus consequat orci ut molestie. Proin ut ligula nisi. Etiam ac tristique nisi, sed tristique erat. Nam gravida orci id urna luctus, sed ultrices felis fermentum.</p>
+		<p>Copyright &copy; 2015 by Patrick Scheller</p>
+	</footer>
+
+</body>
+</html>

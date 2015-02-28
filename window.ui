@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Window</class>
+ <widget class="QMainWindow" name="Window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1148</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Web Extractor - [new project]</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QToolButton" name="toolButtonHome">
+           <property name="toolTip">
+            <string>Home: Load the project's URL</string>
+           </property>
+           <property name="text">
+            <string>H</string>
+           </property>
+           <property name="icon">
+            <iconset resource="webtooth.qrc">
+             <normaloff>:/img/res/Home-icon2.png</normaloff>:/img/res/Home-icon2.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonBack">
+           <property name="toolTip">
+            <string>Load previous webpage</string>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>B</string>
+           </property>
+           <property name="icon">
+            <iconset resource="webtooth.qrc">
+             <normaloff>:/img/res/arrow-back-icon.png</normaloff>:/img/res/arrow-back-icon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonForward">
+           <property name="toolTip">
+            <string>Forward to next webpage</string>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>F</string>
+           </property>
+           <property name="icon">
+            <iconset resource="webtooth.qrc">
+             <normaloff>:/img/res/arrow-forward-icon.png</normaloff>:/img/res/arrow-forward-icon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+           <property name="arrowType">
+            <enum>Qt::NoArrow</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonReload">
+           <property name="toolTip">
+            <string>Reload currently displayed webpage</string>
+           </property>
+           <property name="text">
+            <string>R</string>
+           </property>
+           <property name="icon">
+            <iconset resource="webtooth.qrc">
+             <normaloff>:/img/res/recycle-icon.png</normaloff>:/img/res/recycle-icon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditURL">
+           <property name="toolTip">
+            <string>Enter a valid URL here prefixing it with the correct protocol like &quot;file:///&quot; or &quot;http://&quot;</string>
+           </property>
+           <property name="maxLength">
+            <number>512</number>
+           </property>
+           <property name="placeholderText">
+            <string>Enter a new URL...</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonLoadLocalHTML">
+           <property name="toolTip">
+            <string>Load a local HTML file from your pc or network</string>
+           </property>
+           <property name="text">
+            <string>L</string>
+           </property>
+           <property name="icon">
+            <iconset resource="webtooth.qrc">
+             <normaloff>:/img/res/anchor-icon.png</normaloff>:/img/res/anchor-icon.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="autoRaise">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonSelectedHtml">
+           <property name="toolTip">
+            <string>Display the HTML code under the selected text</string>
+           </property>
+           <property name="text">
+            <string>Show Html</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="tabShape">
+         <enum>QTabWidget::Rounded</enum>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="usesScrollButtons">
+         <bool>false</bool>
+        </property>
+        <property name="movable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="tabWebView">
+         <attribute name="title">
+          <string>Web View</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QWebView" name="webView">
+            <property name="url">
+             <url>
+              <string>http://qt-project.org/</string>
+             </url>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabHtmlView">
+         <attribute name="title">
+          <string>HTML View</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <widget class="QPlainTextEdit" name="plainTextEditHtml">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabDomTree">
+         <attribute name="title">
+          <string>DOM Tree</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QTreeWidget" name="treeWidget">
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1148</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menu_Export_Data">
+     <property name="title">
+      <string>Export Data...</string>
+     </property>
+     <addaction name="actionExport_as_CSV"/>
+     <addaction name="actionExport_as_JSON"/>
+    </widget>
+    <addaction name="actionNew_Project"/>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="menu_Export_Data"/>
+    <addaction name="separator"/>
+    <addaction name="actionProperties"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit_Application"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuBrowser">
+    <property name="title">
+     <string>Browser</string>
+    </property>
+    <widget class="QMenu" name="menuSet_Zoom_Factor">
+     <property name="title">
+      <string>Set Zoom Factor</string>
+     </property>
+     <addaction name="action50"/>
+     <addaction name="action100"/>
+     <addaction name="action125"/>
+     <addaction name="action150"/>
+    </widget>
+    <addaction name="menuSet_Zoom_Factor"/>
+    <addaction name="actionSet_Content_As_Editable"/>
+    <addaction name="actionShow_Web_Inspector_Dock"/>
+   </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Window</string>
+    </property>
+    <addaction name="actionShow_Filter_List_Dock"/>
+    <addaction name="actionShow_Extraction_Properties_Dock"/>
+    <addaction name="actionShow_Results_Panel_Dock"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuBrowser"/>
+   <addaction name="menuWindow"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="dockWidgetFilter">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>232</width>
+     <height>146</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Filter List</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="lineEditNewLabel">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Syntax: [filtername;command#amount], Commands: R, T, D, D*&lt;/p&gt;&lt;p&gt;Multi-Add: labelname;t#5 adds 5 new tag-filters&lt;/p&gt;&lt;p&gt;Multi-Delete: labelname*;d*&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="maxLength">
+            <number>256</number>
+           </property>
+           <property name="placeholderText">
+            <string>Label of new filter</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="pushButtonAddFilter">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Add a new filter or remove one or several filters</string>
+           </property>
+           <property name="text">
+            <string>Add new filter / Remove</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QListWidget" name="listWidgetFilters"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidgetProp">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>119</width>
+     <height>140</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Extraction Properties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayoutProp">
+       <item>
+        <widget class="QLabel" name="labelPropertyError">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(235, 0, 0);</string>
+         </property>
+         <property name="text">
+          <string>default</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widgetPropertyBrowser" native="true"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidgetRes">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>166</width>
+     <height>200</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Results Panel</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_4">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QTableWidget" name="tableWidgetStats">
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="rowCount">
+        <number>1</number>
+       </property>
+       <property name="columnCount">
+        <number>2</number>
+       </property>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <row/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="pushButtonScan">
+         <property name="toolTip">
+          <string>Extract the filtered data out of the webpage now</string>
+         </property>
+         <property name="text">
+          <string>Scan webpage now</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="toolButtonClipBoard">
+         <property name="toolTip">
+          <string>Copy the results to the clipboard</string>
+         </property>
+         <property name="text">
+          <string>C</string>
+         </property>
+         <property name="icon">
+          <iconset resource="webtooth.qrc">
+           <normaloff>:/img/res/scissors-icon.png</normaloff>:/img/res/scissors-icon.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="autoRaise">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidgetInspector">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>150</width>
+     <height>42</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllDockWidgetAreas</set>
+   </property>
+   <property name="windowTitle">
+    <string>Web Inspector View</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QVBoxLayout" name="verticalLayout_10">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_11"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="webtooth.qrc">
+     <normaloff>:/img/res/bookshelf-icon.png</normaloff>:/img/res/bookshelf-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Help</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="webtooth.qrc">
+     <normaloff>:/img/res/Ninja-icon.png</normaloff>:/img/res/Ninja-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+   <property name="toolTip">
+    <string>Infos about</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionNew_Project">
+   <property name="text">
+    <string>&amp;New Project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen_Project">
+   <property name="text">
+    <string>&amp;Open Project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Save Project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionProperties">
+   <property name="icon">
+    <iconset resource="webtooth.qrc">
+     <normaloff>:/img/res/tools-icon.png</normaloff>:/img/res/tools-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Properties</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionExit_Application">
+   <property name="icon">
+    <iconset resource="webtooth.qrc">
+     <normaloff>:/img/res/power-icon.png</normaloff>:/img/res/power-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Quit Application</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionExport_as_CSV">
+   <property name="text">
+    <string>Export as &amp;CSV</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionExport_as_JSON">
+   <property name="text">
+    <string>Export as &amp;JSON</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+  </action>
+  <action name="action50">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>50%</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="action100">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>100% (Default)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+1</string>
+   </property>
+  </action>
+  <action name="action150">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>150%</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+3</string>
+   </property>
+  </action>
+  <action name="action125">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>125%</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+2</string>
+   </property>
+  </action>
+  <action name="actionSet_Content_As_Editable">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Set Content As Editable</string>
+   </property>
+   <property name="statusTip">
+    <string>Enable or disable the ability to directly edit text in the webpage</string>
+   </property>
+  </action>
+  <action name="actionShow_Web_Inspector_Dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Web Inspector Dock</string>
+   </property>
+  </action>
+  <action name="actionShow_Filter_List_Dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Filter List Dock</string>
+   </property>
+  </action>
+  <action name="actionShow_Extraction_Properties_Dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Extraction Properties Dock</string>
+   </property>
+  </action>
+  <action name="actionShow_Results_Panel_Dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show Results Panel Dock</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="webtooth.qrc"/>
+ </resources>
+ <connections/>
+</ui>

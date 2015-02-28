@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>res/Clipboard-icon.png</file>
+        <file>res/Wand-icon.png</file>
+        <file>res/Spongebob-icon.png</file>
+        <file>res/scissors-icon.png</file>
+        <file>res/anchor-icon.png</file>
+        <file>res/Home-icon.png</file>
+        <file>res/recycle-icon.png</file>
+        <file>res/arrow-back-icon.png</file>
+        <file>res/arrow-forward-icon.png</file>
+        <file>res/Home-icon2.png</file>
+        <file>res/tools-icon.png</file>
+        <file>res/power-icon.png</file>
+        <file>res/bookshelf-icon.png</file>
+        <file>res/Ninja-icon.png</file>
+        <file>res/Blue-block-icon.png</file>
+        <file>res/gplv3-127x51.png</file>
+        <file>res/Red-Block-icon.png</file>
+        <file>res/Microchip-icon.png</file>
+        <file>res/Qt_logo.svg(64).png</file>
+        <file>res/webtooth-help.html</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Properties</class>
+ <widget class="QDialog" name="Properties">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>535</width>
+    <height>581</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WebTooth Extractor - Properties Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="toolTip">
+        <string>Feed the monster and donate or buy a commercial license</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="webtooth.qrc">:/img/res/Blue-block-icon.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Arial Black</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Project Properties &amp; Info</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Properties</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Author / Company Name:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEditAuthorName">
+          <property name="toolTip">
+           <string>Enter a name here</string>
+          </property>
+          <property name="maxLength">
+           <number>50</number>
+          </property>
+          <property name="placeholderText">
+           <string>your name ...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Last Saved Modification:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEditLastModificationDate">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="toolTip">
+           <string>Date of the last saved modification</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Project URL / Path:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Description / Notes:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_URL">
+            <property name="toolTip">
+             <string>Insert the URL or path of this project's webpage</string>
+            </property>
+            <property name="maxLength">
+             <number>512</number>
+            </property>
+            <property name="placeholderText">
+             <string>address of the webpage ...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton">
+            <property name="toolTip">
+             <string>Load the URL of the webpage or HTML file of this project</string>
+            </property>
+            <property name="autoFillBackground">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>L</string>
+            </property>
+            <property name="icon">
+             <iconset resource="webtooth.qrc">
+              <normaloff>:/img/res/anchor-icon.png</normaloff>:/img/res/anchor-icon.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="plainTextEditUserNotes">
+        <property name="toolTip">
+         <string>Write your description of this project or your notes about it</string>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="placeholderText">
+         <string>your notes go here ...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Thumbnail Width:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBoxThumbWidth">
+          <property name="suffix">
+           <string> pixel</string>
+          </property>
+          <property name="minimum">
+           <number>50</number>
+          </property>
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="value">
+           <number>300</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Crop Thumbnail:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="checkBoxCropThumb">
+          <property name="toolTip">
+           <string>Should the height of the thumbnails be cropped or use the full height of the webpage instead?</string>
+          </property>
+          <property name="text">
+           <string>(Yes/No)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Thumbnail Height:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="spinBoxThumbHeight">
+          <property name="suffix">
+           <string> pixel</string>
+          </property>
+          <property name="minimum">
+           <number>50</number>
+          </property>
+          <property name="maximum">
+           <number>1000</number>
+          </property>
+          <property name="value">
+           <number>500</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="webtooth.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Properties</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Properties</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
