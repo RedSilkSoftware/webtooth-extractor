@@ -824,7 +824,7 @@ void Window::closeEvent(QCloseEvent *event)
               // Clear strCurrentProjectFileName
               this->strCurrentProjectFileName = "";
               // Display new Project name in Window title
-              this->setWindowTitle("Web Extractor - [new project]");
+              this->setWindowTitle(initWindowTitle);
               event->accept();
               break;
           case QMessageBox::Cancel:
@@ -845,7 +845,7 @@ void Window::closeEvent(QCloseEvent *event)
         // Clear strCurrentProjectFileName
         this->strCurrentProjectFileName = "";
         // Display new Project name in Window title
-        this->setWindowTitle("Web Extractor - [new project]");
+        this->setWindowTitle(initWindowTitle);
 
     }
 }
@@ -960,7 +960,7 @@ void Window::on_actionOpen_Project_triggered()
         if (this->projectFile.readJsonFile(this->filterData, propDialog.hProjectData, tmpFileName))
         {
             strCurrentProjectFileName = tmpFileName;
-            this->setWindowTitle("Web Extractor - ["+ strCurrentProjectFileName + "]");
+            this->setWindowTitle("WebTooth Extractor - ["+ strCurrentProjectFileName + "]");
             propDialog.LoadData();
 
             // QHash<QString, QVector<QString>*> t_filterdata;
@@ -1021,7 +1021,7 @@ void Window::on_actionSave_Project_triggered()
         else
         {
             strCurrentProjectFileName = tmpFileName;
-            this->setWindowTitle("Web Extractor - ["+ strCurrentProjectFileName + "]");
+            this->setWindowTitle("WebTooth Extractor - ["+ strCurrentProjectFileName + "]");
             // Fill Properties
             // Fill this->listWidgetFilters
         }
@@ -1047,7 +1047,7 @@ void Window::on_actionSave_Project_triggered()
         if (!this->projectFile.writeJsonFile(this->filterData, propDialog.hProjectData, strCurrentProjectFileName))
         {
             qDebug() << "Rollback Save-Process";
-            this->setWindowTitle("Web Extractor - [new project]*"); // If we could not save then rollback this process
+            this->setWindowTitle("WebTooth Extractor - [new project]*"); // If we could not save then rollback this process
             strCurrentProjectFileName = "";
             isDirtyData = true;
         }
@@ -1291,7 +1291,7 @@ void Window::on_actionNew_Project_triggered()
                 // Clear strCurrentProjectFileName
                 this->strCurrentProjectFileName = "";
                 // Display new Project name in Window title
-                this->setWindowTitle("Web Extractor - [new project]");
+                this->setWindowTitle(initWindowTitle);
                 this->actionSave_Project->setEnabled(false);
               break;
           case QMessageBox::Cancel:
@@ -1311,7 +1311,7 @@ void Window::on_actionNew_Project_triggered()
         // Clear strCurrentProjectFileName
         this->strCurrentProjectFileName = "";
         // Display new Project name in Window title
-        this->setWindowTitle("Web Extractor - [new project]");
+        this->setWindowTitle(initWindowTitle);
         this->actionSave_Project->setEnabled(false);
     }
 }

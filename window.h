@@ -176,6 +176,7 @@ private:
     qreal webZoomFactor;
     QWebInspector* insp;
     QDialog* dlg;
+    const QString initWindowTitle = "WebTooth Extractor - [new project]";
     const int ui_timeout = 4000;
 
     // Property-Fields
