@@ -9,6 +9,12 @@ Generally only pure Qt classes and datatypes have been used, so this code should
 * Modern C++ compiler suite (CLANG >= 3.5, GCC >= 4.82, MSVC-2013)
 * Qt 5.4.1 is recommended, older versions of v5 could run as well but are not confirmed as of now
 
+##ToDo List
+- [ ] Compilable and runnable on recent Linux-64bit distros (released in 2014) - *Help needed*
+- [ ] Compilable and runnable on recent Mac OS X (10.9) - *Help needed*
+- [ ] Implement Export of CSV & JSON
+- [ ] Implement the Occurrence functionality, after more reflection and possibly *feedback from users*
+
 ##Manual
 The manual for the WebTooth-Extractor is embedded in the application. Just press F1.
 
