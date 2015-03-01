@@ -10,6 +10,9 @@
 *.dll
 *.dylib
 *.obj
+*.exp
+*.ilk
+*.pdb
 
 # Qt-es
 
