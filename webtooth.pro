@@ -23,7 +23,8 @@ win32:QMAKE_CXXFLAGS_RELEASE += /GL /Ox
 unix:QMAKE_CXXFLAGS += -std=c++11
 QMAKE_LFLAGS_WINDOWS += /LTCG
 
-INCLUDEPATH += $$PWD\qtpropertybrowser\src
+unix:INCLUDEPATH += $$PWD/qtpropertybrowser/src
+win32:INCLUDEPATH += $$PWD\qtpropertybrowser\src
 #DEPENDPATH += $$PWD/qtpropertybrowser/src
 
 RESOURCES += \
