@@ -1,5 +1,5 @@
 # WebTooth-Extractor
-A cross-platform desktop tool to extract data from any webpage with predefined filters with one click. [![Flattr this git repo](http://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=patlecat&url=https%3A%2F%2Fgithub.com%2FRedSilkSoftware%2Fwebtooth-extractor%2F&&title=WebTooth-Extractor&language=cpp&tags=github&category=software)
+A cross-platform desktop tool to extract data from any webpage with predefined filters with one click. Please support this project with a donation via flattr [![Flattr this git repo](http://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=patlecat&url=https%3A%2F%2Fgithub.com%2FRedSilkSoftware%2Fwebtooth-extractor%2F&&title=WebTooth-Extractor&language=cpp&tags=github&category=software). Let me know if you prefer other services to donate with.
 
 ##Supported platforms & Operating Systems
 Generally only pure Qt classes and datatypes have been used, so this code should be runnable on all platforms that Qt supports. So far I can confirm the following platforms and OS to be tested:
