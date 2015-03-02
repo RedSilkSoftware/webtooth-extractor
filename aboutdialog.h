@@ -25,7 +25,7 @@ along with WebTooth-Extractor. If not, see http://www.gnu.org/licenses/ .
 #include <QDialog>
 
 const QString qt_Version = QT_VERSION_STR;
-const QString wte_Version = "0.5 alpha";
+const QString wte_Version = "0.6 alpha";
 
 namespace Ui {
 class AboutDialog;

@@ -37,7 +37,8 @@ Properties::Properties(QWidget *parent) :
     sAuthor(""),
     sProjectNotes(""),
     uProjectUrl(""),
-    sLastModificationDate("")
+    sLastModificationDate(""),
+    csvSeparator("")
 {
     ui->setupUi(this);
 
@@ -53,6 +54,7 @@ Properties::Properties(QWidget *parent) :
     hProjectData.insert("cropthumb", "true"); // true or falsse
     hProjectData.insert("thumbwidth", "300"); // in pixels
     hProjectData.insert("thumbheight", "500"); // in pixels
+    hProjectData.insert("csvseparator", ","); // in pixels
 }
 
 Properties::~Properties()
@@ -69,6 +71,7 @@ void Properties::on_buttonBox_accepted()
     thumbWidth = ui->spinBoxThumbWidth->value();
     sAuthor = ui->lineEditAuthorName->text();
     sProjectNotes = ui->plainTextEditUserNotes->toPlainText();
+    csvSeparator = ui->lineEditCSVSeparator->text();
 
     hProjectData["projectauthor"] = sAuthor;
     hProjectData["projecnotes"] = sProjectNotes;
@@ -76,6 +79,7 @@ void Properties::on_buttonBox_accepted()
     hProjectData["cropthumb"] = (bCropThumb ? "true" : "false");
     hProjectData["thumbwidth"] = QString::number(thumbWidth);
     hProjectData["thumbheight"] = QString::number(thumbHeight);
+    hProjectData["csvseparator"] = csvSeparator;
 }
 
 // Load after an OpenFile
@@ -87,6 +91,7 @@ void Properties::LoadData(void)
     bCropThumb = (hProjectData["cropthumb"] == "true" ? true : false);
     thumbWidth = hProjectData["thumbwidth"].toShort();
     thumbHeight = hProjectData["thumbheight"].toShort();
+    csvSeparator = hProjectData["csvseparator"];
     //qDebug() << "Properties:" << sAuthor << ", " << sProjectNotes << ", " << sUrlPath << ", " << (bCropThumb ? "true" : "false") << ", "
     //         << QString::number(thumbWidth) << ", " << QString::number(thumbHeight);
 
@@ -96,6 +101,7 @@ void Properties::LoadData(void)
     ui->spinBoxThumbWidth->setValue(thumbWidth);
     ui->lineEditAuthorName->setText(sAuthor);
     ui->plainTextEditUserNotes->setPlainText(sProjectNotes);
+    ui->lineEditCSVSeparator->setText(csvSeparator);
 }
 
 void Properties::on_toolButton_clicked()
@@ -193,3 +199,13 @@ void Properties::on_checkBoxCropThumb_toggled(bool checked)
         ui->spinBoxThumbHeight->setEnabled(false);
     }
 }
+QString Properties::getCsvSeparator() const
+{
+    return csvSeparator;
+}
+
+void Properties::setCsvSeparator(const QString &value)
+{
+    csvSeparator = value;
+}
+

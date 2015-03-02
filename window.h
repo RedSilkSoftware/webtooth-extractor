@@ -143,6 +143,8 @@ private slots:
 
     void on_actionShow_Results_Panel_Dock_triggered(bool checked);
 
+    void on_actionExport_as_CSV_triggered();
+
 private:
     void examineChildElements(const QWebElement &parentElement, QTreeWidgetItem *parentItem);
     QMap<QString, QString> tbl_stats;

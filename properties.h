@@ -61,6 +61,9 @@ public:
     qint16 getThumbWidth() const;
     void setThumbWidth(const qint16 &value);
 
+    QString getCsvSeparator() const;
+    void setCsvSeparator(const QString &value);
+
 private slots:
     void on_buttonBox_accepted();
 
@@ -80,6 +83,7 @@ private:
     QString sAuthor;
     QString sProjectNotes;
     QUrl uProjectUrl;
+    QString csvSeparator;
 };
 
 #endif // PROPERTIES_H

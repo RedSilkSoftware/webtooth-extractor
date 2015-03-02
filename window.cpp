@@ -37,6 +37,7 @@ along with WebTooth-Extractor. If not, see http://www.gnu.org/licenses/ .
 #include <qttreepropertybrowser.h>
 
 #include "jsonfile.h"
+#include "csvfile.h"
 //#include "properties.h"
 
 
@@ -115,99 +116,47 @@ void Window::on_webView_loadFinished()
 void Window::examineChildElements(const QWebElement &parentElement, QTreeWidgetItem *parentItem)
 {
     QWebElement element = parentElement.firstChild();
-    parentItem->treeWidget()->setHeaderLabel("DOM Tree");
+    parentItem->treeWidget()->setHeaderLabel("DOM Tree with Tags and Attributes");
+    QString tmpInfo = "";
     while (!element.isNull())
     {
-
         QTreeWidgetItem *item = new QTreeWidgetItem();
-        if (element.attribute("id") == "quickStats") //battleRank
+        if (element.attributeNames().isEmpty())
         {
-            item->setText(0, "Quick-Stats");
-        }
-        else if (element.attribute("id") == "battleRank")
-        {
-            item->setText(0, "Battle Rank");
-        }
-        else if (element.tagName() == "A")
-        {
-            if (element.parent().parent().attribute("id") == "worldName")
-            {
-                tbl_stats.insert("World Name", element.toPlainText());
-                item->setText(0, element.toPlainText());
-            }
-
-            if (element.parent().attribute("id") == "title" && element.tagName() == "A")
-            {
-                tbl_stats.insert("Player Name", element.toPlainText());
-                item->setText(0, element.toPlainText());
-            }
-            else if (element.tagName() == "A" && element.parent().hasClass("data"))
-            {
-                tbl_stats.insert("Outfit Name", element.toPlainText());
-                item->setText(0, element.toPlainText());
-            }
-        }
-        else if (element.hasClass("stats"))
-        {
-            item->setText(0, "Stats");
-        }
-        else if (element.hasClass("data"))
-        {
-            if (element.hasClass("data") && element.hasClass("big"))
-            {
-                if (element.parent().attribute("id") == "battleRank")
-                {
-                    tbl_stats.insert("Battle Rank", element.toPlainText());
-                    item->setText(0, element.toPlainText());
-                }
-            }
-            if (element.hasClass("data") && element.parent().hasClass("stats-block"))
-            {
-                if (tbl_stats.find("Total Score").key() == "Total Score")
-                {
-                }
-                else
-                {
-                    tbl_stats.insert("Total Score", element.toPlainText());
-                    item->setText(0, element.toPlainText());
-                    qDebug() << "Total Score: " << element.toPlainText();
-                }
-            }
-            if (element.parent().attribute("id") == "status")
-            {
-                tbl_stats.insert("Online Status", element.toPlainText());
-                item->setText(0, element.toPlainText());
-            }
-            if (element.parent().attribute("id") == "memberSince")
-            {
-                tbl_stats.insert("Member Since", element.toPlainText());
-                item->setText(0, element.toPlainText());
-            }
-
-            if (element.hasClass("data") && element.hasClass("PS2"))
-            {
-                if (element.parent().attribute("id") == "spm")
-                {
-                    tbl_stats.insert("SPM", element.toPlainText());
-                    item->setText(0, element.toPlainText());
-                }
-                else if (element.parent().attribute("id") == "kdRatio")
-                {
-                    tbl_stats.insert("K/D Ratio", element.toPlainText());
-                    item->setText(0, element.toPlainText());
-                }
-            }
+            //qDebug() << "element.attributeNames().isEmpty() = true";
+            tmpInfo = "<" + element.tagName() + ">";
         }
         else
         {
-            item->setText(0, element.tagName());
+            //qDebug() << "element.attributeNames().isEmpty() = false !";
+            tmpInfo = "<" + element.tagName() + ">" + " (";
+            tmpInfo += element.attributeNames().at(0); // First attribute doesn't need a leading comma
+            for (int i = 1; i < element.attributeNames().size(); i++)
+            {
+                tmpInfo += ", " + element.attributeNames().at(i);
+            }
+            tmpInfo += ")";
         }
-
+        item->setText(0, tmpInfo);
+        QString tmpTooltip = "";
+        tmpTooltip = element.toPlainText();
+        if (tmpTooltip.size() > 500)
+        {
+            tmpTooltip.resize(500);
+            tmpTooltip += " .... >> CUT >>";
+        }
+        if (tmpTooltip.isEmpty()) // No content
+        {
+            item->setBackgroundColor(0, QColor(220, 220, 230));
+        }
+        item->setToolTip(0, tmpTooltip);
         parentItem->addChild(item);
+
         examineChildElements(element, item);
         element = element.nextSibling();
     }
 }
+
 
 //
 void Window::processWebFilters(const QWebElement& parentElement)
@@ -479,6 +428,7 @@ void Window::on_pushButtonScan_clicked()
 
     QWebFrame *frame = webView->page()->mainFrame();
     QWebElement document = frame->documentElement();
+    treeWidget->clear(); // Remove all tree-items before refilling them
     examineChildElements(document, treeWidget->invisibleRootItem());
     this->processWebFilters(document); // Replaces the static filter processing here
     fillTable();
@@ -577,7 +527,28 @@ void Window::on_pushButtonSelectedHtml_clicked()
 
 void Window::on_lineEditURL_returnPressed()
 {
-    this->setUrl(this->lineEditURL->text());
+    QString tmpUrl = "";
+    tmpUrl = this->lineEditURL->text();
+    if (tmpUrl.isEmpty())
+        return;
+
+    if (tmpUrl.contains("://"))
+    {
+        // Are the '//' at the front?
+        int idx = tmpUrl.indexOf("://", 0);
+        qDebug() << " :// found at pos:" << idx;
+        if (idx < 3)
+            qDebug() << "ERROR: Invalid URL received";
+    }
+    else
+    {
+        // Add http:// to the front
+        tmpUrl.insert(0, "http://");
+        this->lineEditURL->setText(tmpUrl);
+    }
+
+    this->setUrl(tmpUrl);
+    //qDebug() << "on_lineEditURL_returnPressed() triggered :)";
 }
 
 void Window::on_webView_urlChanged(const QUrl &arg1)
@@ -1579,3 +1550,30 @@ void Window::on_widgetPropertyBrowser_EnumValueChanged(QtProperty* myprop, int i
 
 
 }
+
+void Window::on_actionExport_as_CSV_triggered()
+{
+    QString docPath = QStandardPaths::locate(QStandardPaths::DocumentsLocation, QString(), QStandardPaths::LocateDirectory)+"WebTooth-Results";
+    QString tmpFileName = QFileDialog::getSaveFileName(this, "Save CSV File", docPath, "WebTooth CSV Result Files (*.csv);;Text Files (*.txt);;All Files (*.*)");
+    if (tmpFileName.isEmpty())
+    {
+        return; // User aborted the SaveFileDialog
+    }
+    else
+    {
+        CSVFile mycsvfile;
+        if (mycsvfile.WriteResultCSV(tbl_stats, tmpFileName, propDialog.getCsvSeparator()))
+        {
+            qDebug() << "CSV File has been successfully written :)";
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setText("The CSV file could not be written, please check your filesystem and permissions!");
+            msgBox.setWindowTitle("Error Writing Data to CSV");
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.exec();
+        }
+    }
+}
+

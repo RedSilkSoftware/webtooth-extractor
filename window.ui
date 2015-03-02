@@ -648,6 +648,9 @@
    <property name="text">
     <string>Export as &amp;CSV</string>
    </property>
+   <property name="toolTip">
+    <string>Export your results as a CSV file which is structured according to the IETF RFC4180 standard.</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
    </property>

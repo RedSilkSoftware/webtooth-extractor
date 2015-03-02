@@ -5,12 +5,14 @@ FORMS     = window.ui \
 HEADERS   = window.h \
     jsonfile.h \
     properties.h \
-    aboutdialog.h
+    aboutdialog.h \
+    csvfile.h
 SOURCES   = main.cpp \
             window.cpp \
     jsonfile.cpp \
     properties.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    csvfile.cpp
 
 RC_ICONS = Blue-block-small.ico
 
