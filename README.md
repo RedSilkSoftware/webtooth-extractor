@@ -15,7 +15,8 @@ Generally only pure Qt classes and datatypes have been used, so this code should
 ##ToDo List
 - [ ] Compilable and runnable on recent Linux-64bit distros (released in 2014) - *Help needed*
 - [ ] Compilable and runnable on recent Mac OS X (10.9) - *Help needed*
-- [ ] Implement Export of CSV & JSON
+- [x] Implement Export of CSV
+- [ ] Implement Export of JSON
 - [ ] Implement the Occurrence functionality, after more reflection and possibly *feedback from users*
 
 ##Build Infos
