@@ -23,7 +23,7 @@ Generally only pure Qt classes and datatypes have been used, so this code should
 * Build the QPropertyBrowser library first with the buildlib.pro file in its own directory. Then test it with one of the example projects, for example the Demo.
 
 ##Manual
-The manual for the WebTooth-Extractor is embedded in the application. Just press F1.
+The manual for the WebTooth-Extractor is embedded in the application, just press **F1**. But check the **tooltips** first for the fields, windows, boxes and menus. They should explain a lot.
 
 ## Screenshot
 Here a first screenshot of the program. More will follow. Feedback, testing and pull-requests are very welcome from :girl: and :boy:.
