@@ -102,17 +102,6 @@ void Window::setUrl(const QUrl &url)
     //worker_thread.join();
 }
 
-void Window::on_webView_loadFinished()
-{
-    //treeWidget->clear();
-
-    //QWebFrame *frame = webView->page()->mainFrame();
-    //QWebElement document = frame->documentElement();
-
-    //examineChildElements(document, treeWidget->invisibleRootItem());
-
-}
-
 void Window::examineChildElements(const QWebElement &parentElement, QTreeWidgetItem *parentItem)
 {
     QWebElement element = parentElement.firstChild();
@@ -437,11 +426,13 @@ void Window::on_pushButtonScan_clicked()
 
     // Save a thumbnail of the current webpage
     QWebPage* tmpPage = this->webView->page();
+    QSize origSize = tmpPage->viewportSize(); // Save the original screen-viewport size
     tmpPage->setViewportSize(tmpPage->mainFrame()->contentsSize());
     QImage image(tmpPage->viewportSize(), QImage::Format_ARGB32);
     QPainter painter(&image);
     tmpPage->mainFrame()->render(&painter);
     painter.end();
+    tmpPage->setViewportSize(origSize); // Reset the original screen-viewport size
 
     QImage  thumbnail;
     if (propDialog.getBCropThumb())
@@ -496,25 +487,6 @@ void Window::getHTML(void)
     {
         plainTextEditHtml->insertPlainText(sHtml);
     }
-}
-
-void Window::on_webView_selectionChanged()
-{
-    /*
-    QMessageBox msgBox;
-    msgBox.setText(webView->selectedHtml());
-    msgBox.setWindowTitle("Selected HTML");
-    msgBox.exec();
-    */
-}
-void Window::on_webView_linkClicked(const QUrl &arg1)
-{
-    /*
-    QMessageBox msgBox;
-    msgBox.setText(arg1.toString());
-    msgBox.setWindowTitle("Selected Link URL");
-    msgBox.exec();
-    */
 }
 
 void Window::on_pushButtonSelectedHtml_clicked()

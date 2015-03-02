@@ -59,7 +59,6 @@ public:
 
 
 public slots:
-    void on_webView_loadFinished();
     void on_widgetPropertyBrowser_valueChanged(QtProperty* myprop, const QString& strValue);
     void on_widgetPropertyBrowser_IntValueChanged(QtProperty* myprop, int iValue);
     void on_widgetPropertyBrowser_EnumValueChanged(QtProperty* myprop, int iValue);
@@ -68,10 +67,6 @@ public slots:
 
 private slots:
     void on_pushButtonScan_clicked();
-
-    void on_webView_selectionChanged();
-
-    void on_webView_linkClicked(const QUrl &arg1);
 
     void on_pushButtonSelectedHtml_clicked();
 
