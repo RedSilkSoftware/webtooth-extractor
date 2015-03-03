@@ -3,10 +3,10 @@
 
 [Setup]
 AppName=WebTooth-Extractor
-AppVersion=0.1 alpha
+AppVersion=0.6 alpha
 AppCopyright=Patrick Scheller, 2015
 ChangesAssociations=True
-SetupIconFile=C:\Development\Qt5\webtooth-extractor\Blue-block-small.ico
+SetupIconFile=..\Blue-block-small.ico
 DefaultDirName={pf}\WebTooth-Extractor
 AllowRootDirectory=True
 DefaultGroupName=WebTooth-Extractor
@@ -16,7 +16,7 @@ VersionInfoCompany=ccompany
 VersionInfoDescription=ddescription
 VersionInfoProductName=pproduct name
 VersionInfoProductVersion=0.1
-OutputDir=C:\Development\Qt5\webtooth-extractor\installer\output
+OutputDir=output
 OutputBaseFilename=WebTooth-Extractor_Setup
 ArchitecturesInstallIn64BitMode=x64
 ArchitecturesAllowed=x64
@@ -29,26 +29,25 @@ InfoBeforeFile=input/disclaimer_beforeFile.txt
 UserInfoPage=yes
 
 [Files]
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\icudt53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\icuin53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\icuuc53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Core.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Gui.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Multimedia.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5MultimediaWidgets.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Network.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5OpenGL.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Positioning.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5PrintSupport.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Qml.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Quick.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Sensors.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Solutions_PropertyBrowser-head.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Sql.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5WebChannel.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5WebKit.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5WebKitWidgets.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\Qt5Widgets.dll"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\webtooth.exe"; DestDir: "{app}\input"; Flags: ignoreversion
-Source: "C:\Development\Qt5\webtooth-extractor\installer\input\gpl-3.0.txt"; DestDir: "{app}"; Flags: ignoreversion
-
+Source: "input\icudt53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\icuin53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\icuuc53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Core.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Gui.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Multimedia.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5MultimediaWidgets.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Network.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5OpenGL.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Positioning.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5PrintSupport.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Qml.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Quick.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Sensors.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Solutions_PropertyBrowser-head.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Sql.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5WebChannel.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5WebKit.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5WebKitWidgets.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\Qt5Widgets.dll"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\webtooth.exe"; DestDir: "{app}\input"; Flags: ignoreversion
+Source: "input\gpl-3.0.txt"; DestDir: "{app}"; Flags: ignoreversion
