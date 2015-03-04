@@ -1549,3 +1549,17 @@ void Window::on_actionExport_as_CSV_triggered()
     }
 }
 
+
+void Window::on_actionWhat_s_this_Help_mode_triggered()
+{
+    if (QWhatsThis::inWhatsThisMode())
+    {
+        QWhatsThis::leaveWhatsThisMode();
+    }
+    else
+    {
+        QWhatsThis::enterWhatsThisMode();
+    }
+}
+
+

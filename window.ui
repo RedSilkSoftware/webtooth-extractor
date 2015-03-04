@@ -187,6 +187,9 @@
       </item>
       <item>
        <widget class="QTabWidget" name="tabWidget">
+        <property name="toolTip">
+         <string/>
+        </property>
         <property name="tabShape">
          <enum>QTabWidget::Rounded</enum>
         </property>
@@ -202,6 +205,9 @@
         <widget class="QWidget" name="tabWebView">
          <attribute name="title">
           <string>Web View</string>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Displays the webpage like any browser would</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
@@ -219,6 +225,9 @@
          <attribute name="title">
           <string>HTML View</string>
          </attribute>
+         <attribute name="toolTip">
+          <string>Displays the source of the webpage as pure HTML</string>
+         </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_9">
           <item>
            <widget class="QPlainTextEdit" name="plainTextEditHtml">
@@ -232,6 +241,12 @@
         <widget class="QWidget" name="tabDomTree">
          <attribute name="title">
           <string>DOM Tree</string>
+         </attribute>
+         <attribute name="toolTip">
+          <string>Displays the webpage's elements as a hierarchical tree</string>
+         </attribute>
+         <attribute name="whatsThis">
+          <string>Elements which have content have a white background, the others have a gray one. Hover over the elements to see their content appear as a tooltip.</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
@@ -285,11 +300,12 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionHelp"/>
+    <addaction name="actionWhat_s_this_Help_mode"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuBrowser">
     <property name="title">
-     <string>Browser</string>
+     <string>&amp;Browser</string>
     </property>
     <widget class="QMenu" name="menuSet_Zoom_Factor">
      <property name="title">
@@ -306,7 +322,7 @@
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
-     <string>Window</string>
+     <string>&amp;Window</string>
     </property>
     <addaction name="actionShow_Filter_List_Dock"/>
     <addaction name="actionShow_Extraction_Properties_Dock"/>
@@ -361,7 +377,10 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Syntax: [filtername;command#amount], Commands: R, T, D, D*&lt;/p&gt;&lt;p&gt;Multi-Add: labelname;t#5 adds 5 new tag-filters&lt;/p&gt;&lt;p&gt;Multi-Delete: labelname*;d*&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add or remove a new filter following the syntax, commands: R, T, D, D* (more on Whats this?)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="whatsThis">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Syntax: [&lt;span style=&quot; color:#00557f;&quot;&gt;filtername&lt;/span&gt;&lt;span style=&quot; font-size:9pt; font-weight:600;&quot;&gt;;&lt;/span&gt;&lt;span style=&quot; color:#008200;&quot;&gt;command&lt;/span&gt;&lt;span style=&quot; font-size:9pt; font-weight:600;&quot;&gt;#&lt;/span&gt;&lt;span style=&quot; color:#55557f;&quot;&gt;amount&lt;/span&gt;], Commands: R, T, D, D*&lt;/p&gt;&lt;p&gt;Add Html-Tag:	&lt;span style=&quot; font-weight:600;&quot;&gt;labelname;t&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Add RegEx:	&lt;span style=&quot; font-weight:600;&quot;&gt;labelname;r&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Multi-Add:	&lt;span style=&quot; font-weight:600;&quot;&gt;labelname;t#5&lt;/span&gt;  (&lt;span style=&quot; font-style:italic;&quot;&gt;adds 5 new tag-filters&lt;/span&gt;)&lt;/p&gt;&lt;p&gt;Multi-Delete:	&lt;span style=&quot; font-weight:600;&quot;&gt;labelname*;d*&lt;/span&gt; (&lt;span style=&quot; font-style:italic;&quot;&gt;removes all beginning with labelname&lt;/span&gt;)&lt;/p&gt;&lt;p&gt;Delete:	&lt;span style=&quot; font-weight:600;&quot;&gt;labelnameX;d&lt;/span&gt; (&lt;span style=&quot; font-style:italic;&quot;&gt;removes the label with the exact name&lt;/span&gt;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="maxLength">
             <number>256</number>
@@ -386,7 +405,10 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Add a new filter(s) or remove filter(s)</string>
+            <string>Add new filter(s) or remove filter(s)</string>
+           </property>
+           <property name="whatsThis">
+            <string>Gugus ...</string>
            </property>
            <property name="text">
             <string>Add</string>
@@ -503,6 +525,9 @@
          <property name="toolTip">
           <string>Extract the filtered data out of the webpage now</string>
          </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;gt;&lt;/span&gt; Extract the data out of the project's webpage with the filters you defined and writes the results into the Results Panel.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;gt;&lt;/span&gt; Creates a screenshot of the webpage at this moment with the dimension you defined in the properties.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;&amp;gt;&lt;/span&gt; Loads the HTML source code into the HTML View and the DOM hierarchical data into the DOM Tree View.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Scan webpage now</string>
          </property>
@@ -512,6 +537,9 @@
         <widget class="QToolButton" name="toolButtonClipBoard">
          <property name="toolTip">
           <string>Copy the results to the clipboard</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copy the resulting table of data into the clipboard so that you can paste it into your favorite spreadsheet directly.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
           <string>C</string>
@@ -574,6 +602,9 @@
    <property name="text">
     <string>Help</string>
    </property>
+   <property name="statusTip">
+    <string>Display the manual/documentation</string>
+   </property>
    <property name="shortcut">
     <string>F1</string>
    </property>
@@ -589,6 +620,9 @@
    <property name="toolTip">
     <string>Infos about</string>
    </property>
+   <property name="statusTip">
+    <string>Show the About dialog window with version, license and system infos</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
    </property>
@@ -597,6 +631,9 @@
    <property name="text">
     <string>&amp;New Project</string>
    </property>
+   <property name="statusTip">
+    <string>Creates a new and empty project and closes the current one</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
@@ -604,6 +641,9 @@
   <action name="actionOpen_Project">
    <property name="text">
     <string>&amp;Open Project</string>
+   </property>
+   <property name="statusTip">
+    <string>Opens an existing project file and closes the current one</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -615,6 +655,9 @@
    </property>
    <property name="text">
     <string>&amp;Save Project</string>
+   </property>
+   <property name="statusTip">
+    <string>Saves the current project file</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -628,6 +671,9 @@
    <property name="text">
     <string>&amp;Properties</string>
    </property>
+   <property name="statusTip">
+    <string>Opens the Properties dialog window where you can change the settings of this program</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
@@ -640,6 +686,9 @@
    <property name="text">
     <string>&amp;Quit Application</string>
    </property>
+   <property name="statusTip">
+    <string>Quits and exits this program</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
@@ -649,6 +698,9 @@
     <string>Export as &amp;CSV</string>
    </property>
    <property name="toolTip">
+    <string>Export as CSV</string>
+   </property>
+   <property name="statusTip">
     <string>Export your results as a CSV file which is structured according to the IETF RFC4180 standard.</string>
    </property>
    <property name="shortcut">
@@ -658,6 +710,9 @@
   <action name="actionExport_as_JSON">
    <property name="text">
     <string>Export as &amp;JSON</string>
+   </property>
+   <property name="statusTip">
+    <string>Not implemented yet!</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
@@ -669,6 +724,9 @@
    </property>
    <property name="text">
     <string>50%</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom Factor 50%</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+0</string>
@@ -684,6 +742,9 @@
    <property name="text">
     <string>100% (Default)</string>
    </property>
+   <property name="statusTip">
+    <string>Zoom Factor 100%, the default</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+1</string>
    </property>
@@ -695,6 +756,9 @@
    <property name="text">
     <string>150%</string>
    </property>
+   <property name="statusTip">
+    <string>Zoom Factor 150%</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+3</string>
    </property>
@@ -705,6 +769,9 @@
    </property>
    <property name="text">
     <string>125%</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom Factor 125%</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+2</string>
@@ -728,6 +795,9 @@
    <property name="text">
     <string>Show Web Inspector Dock</string>
    </property>
+   <property name="statusTip">
+    <string>Show or hide the WebInspector dock-window</string>
+   </property>
   </action>
   <action name="actionShow_Filter_List_Dock">
    <property name="checkable">
@@ -738,6 +808,9 @@
    </property>
    <property name="text">
     <string>Show Filter List Dock</string>
+   </property>
+   <property name="statusTip">
+    <string>Show or hide the Filter-List dock-window</string>
    </property>
   </action>
   <action name="actionShow_Extraction_Properties_Dock">
@@ -750,6 +823,9 @@
    <property name="text">
     <string>Show Extraction Properties Dock</string>
    </property>
+   <property name="statusTip">
+    <string>Show or hide theExtraction-Properties dock-window</string>
+   </property>
   </action>
   <action name="actionShow_Results_Panel_Dock">
    <property name="checkable">
@@ -760,6 +836,26 @@
    </property>
    <property name="text">
     <string>Show Results Panel Dock</string>
+   </property>
+   <property name="statusTip">
+    <string>Show or hide the Results-Panel dock-window</string>
+   </property>
+  </action>
+  <action name="actionWhat_s_this_Help_mode">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>What's this? - Help mode</string>
+   </property>
+   <property name="toolTip">
+    <string>What's this? - Help mode</string>
+   </property>
+   <property name="statusTip">
+    <string>The What's this-Mode allows you to get a more extensive help message for any element. Just hover over anything and once the cursor changes into a &lt;?&gt; click it.</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F1</string>
    </property>
   </action>
  </widget>

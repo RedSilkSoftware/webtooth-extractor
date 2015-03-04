@@ -140,6 +140,8 @@ private slots:
 
     void on_actionExport_as_CSV_triggered();
 
+    void on_actionWhat_s_this_Help_mode_triggered();
+
 private:
     void examineChildElements(const QWebElement &parentElement, QTreeWidgetItem *parentItem);
     QMap<QString, QString> tbl_stats;
