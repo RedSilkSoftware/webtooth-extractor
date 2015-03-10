@@ -37,3 +37,4 @@ Makefile*
 bin/webtooth_resource.rc
 bin/release/webtooth_thumbnail.png
 bin/release/webtooth_resource.res
+*.lib

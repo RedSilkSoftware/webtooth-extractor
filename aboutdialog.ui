@@ -40,6 +40,9 @@
        <property name="wordWrap">
         <bool>true</bool>
        </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="1" column="1">
@@ -54,6 +57,9 @@
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The WebTooth-Extractor is free for personal use under the &lt;span style=&quot; font-weight:600;&quot;&gt;GPLv3&lt;/span&gt; license, issued by the &lt;span style=&quot; font-weight:600;&quot;&gt;FSF&lt;/span&gt; organisation. For any kind of commercial usage, you have to acquire a commercial license before use. &lt;a href=&quot;http://www.fsf.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Link to the FSF webpage.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="openExternalLinks">
         <bool>true</bool>
        </property>
       </widget>
@@ -98,6 +104,9 @@
        <property name="wordWrap">
         <bool>true</bool>
        </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="3" column="0">
@@ -129,6 +138,9 @@
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Many thanks also go to the producers of the tools, other sources and graphics used to build WebTooth-Extractor.&lt;/p&gt;&lt;p&gt;Gfx: &lt;a href=&quot;http://www.kameleon.pics&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Kameleon Pics&lt;/span&gt;&lt;/a&gt; , &lt;a href=&quot;http://www.elegantthemes.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Elegantthemes&lt;/span&gt;&lt;/a&gt;, &lt;a href=&quot;http://www.fasticon.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;FastIcon&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="openExternalLinks">
         <bool>true</bool>
        </property>
       </widget>
