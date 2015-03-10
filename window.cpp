@@ -1124,7 +1124,7 @@ void Window::clearListWidget()
     }
 }
 
-void Window::on_widgetPropertyBrowser_valueChanged(QtProperty* myprop, const QString& strValue)
+void Window::on_widgetPropertyBrowser_StringValueChanged(QtProperty* myprop, const QString& strValue)
 {
     QString sfType = "";
     sfType = myprop->propertyName().left(3);
@@ -1193,7 +1193,18 @@ void Window::on_widgetPropertyBrowser_valueChanged(QtProperty* myprop, const QSt
     }
     else if (sfType == "Reg")
     {
-        myvec->replace(1, strValue);
+        QRegularExpression tmpRegex(strValue);
+        if (tmpRegex.isValid())
+        {
+            myvec->replace(1, strValue);
+            if (!this->labelPropertyError->isHidden())
+                this->labelPropertyError->hide();
+        }
+        else
+        {
+            this->labelPropertyError->setText("Error in Regular Expression: " + tmpRegex.errorString());
+            this->labelPropertyError->show();
+        }
     }
     isDirtyData = true;
     QString tmpTitle = this->windowTitle();

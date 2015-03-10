@@ -59,7 +59,7 @@ public:
 
 
 public slots:
-    void on_widgetPropertyBrowser_valueChanged(QtProperty* myprop, const QString& strValue);
+    void on_widgetPropertyBrowser_StringValueChanged(QtProperty* myprop, const QString& strValue);
     void on_widgetPropertyBrowser_IntValueChanged(QtProperty* myprop, int iValue);
     void on_widgetPropertyBrowser_EnumValueChanged(QtProperty* myprop, int iValue);
     //QtIntPropertyManager::valueChanged()
