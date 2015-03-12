@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=WebTooth-Extractor
-AppVersion=0.6 alpha
+AppVersion=0.7 alpha
 AppCopyright=Patrick Scheller, 2015
 ChangesAssociations=True
 SetupIconFile=..\Blue-block-small.ico
@@ -15,9 +15,9 @@ VersionInfoVersion=0.6
 VersionInfoCompany=ccompany
 VersionInfoDescription=ddescription
 VersionInfoProductName=pproduct name
-VersionInfoProductVersion=0.6
+VersionInfoProductVersion=0.7
 OutputDir=output
-OutputBaseFilename=WebTooth-Extractor_Setup
+OutputBaseFilename=WebTooth-Extractor_win64Setup
 ArchitecturesInstallIn64BitMode=x64
 ArchitecturesAllowed=x64
 SolidCompression=True
