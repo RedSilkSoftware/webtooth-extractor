@@ -26,9 +26,9 @@ along with WebTooth-Extractor. If not, see http://www.gnu.org/licenses/ .
 
 const QString qt_Version = QT_VERSION_STR;
 #ifdef QT_DEBUG
-    const QString wte_Version = "0.6 alpha-Debug";
+    const QString wte_Version = "0.7 alpha-Debug";
 #else
-    const QString wte_Version = "0.6 alpha";
+    const QString wte_Version = "0.7 alpha";
 #endif
 
 namespace Ui {

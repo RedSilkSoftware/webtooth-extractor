@@ -1,5 +1,7 @@
-Important Note:
-This version of the WebTooth-Extractor must be considered unfit for productive use as long as it remains in the "alpha" stage. This software is provided as is. Use at your own risk!
+Important Notes:
+>> This version of the WebTooth-Extractor must be considered unfit for productive use as long as it remains in the "alpha" stage. This software is provided as is. Use at your own risk!
+>> Prerequisites: You may need to install the Visual C++ Redistributable Packages for Visual Studio 2013, if they are not already installed on your computer.
+https://www.microsoft.com/en-us/download/details.aspx?id=40784
 // ************************************************************ //
 1. Disclaimer of Warranties. The licensor disclaims to the fullest extent authorized by law any and all other warranties, whether express or implied, including, without limitation, any implied warranties of title, non-infringement, quiet enjoyment, integration, merchantability or fitness for a particular purpose. Without limitation of the foregoing, the licensor expressly does not warrant that:
 
