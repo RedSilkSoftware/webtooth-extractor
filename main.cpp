@@ -29,5 +29,6 @@ int main(int argc, char *argv[])
     mywindow.show();
     //mywindow.setUrl(QUrl("https://www.planetside2.com/players/#!/5428021759057508353/stats"));
     //mywindow.setUrl(QUrl("http://qt-project.org/"));
+    mywindow.setUrl(QUrl("https://startpage.com/"));
     return app.exec();
 }
