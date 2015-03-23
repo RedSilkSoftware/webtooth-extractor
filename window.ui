@@ -405,13 +405,13 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>Add new filter(s) or remove filter(s)</string>
+            <string>Execute command to add or remove filter(s)</string>
            </property>
            <property name="whatsThis">
             <string>Gugus ...</string>
            </property>
            <property name="text">
-            <string>Add</string>
+            <string>Do</string>
            </property>
           </widget>
          </item>
