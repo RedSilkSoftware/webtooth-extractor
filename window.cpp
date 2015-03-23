@@ -75,7 +75,7 @@ Window::Window(QWidget *parent)
     labelPropertyError->hide();
     tableWidgetStats->setHorizontalHeaderLabels(QStringList() << "Data Field" << "Value");
 
-    connect(stringManager, SIGNAL(valueChanged(QtProperty*, const QString&)), this, SLOT(on_widgetPropertyBrowser_valueChanged(QtProperty*, const QString&)));
+    connect(stringManager, SIGNAL(valueChanged(QtProperty*, const QString&)), this, SLOT(on_widgetPropertyBrowser_StringValueChanged(QtProperty*, const QString&)));
     connect(intManager, SIGNAL(valueChanged(QtProperty*, int)), this, SLOT(on_widgetPropertyBrowser_IntValueChanged(QtProperty*, int)));
     connect(enumManager, SIGNAL(valueChanged(QtProperty*, int)), this, SLOT(on_widgetPropertyBrowser_EnumValueChanged(QtProperty*, int)));
     //connect(stringManager, SIGNAL(​editingFinished()), this, SLOT(on_stringEdit_editingFinished()));
