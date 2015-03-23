@@ -16,7 +16,7 @@ SOURCES   = main.cpp \
 
 RC_ICONS = Blue-block-small.ico
 
-win32:CONFIG(release, debug|release): CONFIG += embed_manifest_exe LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-head
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-head
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-headd
 else:unix: LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-head
 
