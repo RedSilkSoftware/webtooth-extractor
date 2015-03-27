@@ -161,10 +161,10 @@ void Window::processWebFilters(const QWebElement& parentElement)
     auto itFList = this->filterData.constBegin();
     while (itFList != filterData.constEnd())
     {
-        qDebug() << "Processing RegExp-Filter: " << itFList.key();
         auto myvec = itFList.value();
         if (myvec->at(0) == "reg") // Filtertype = RegExp
         {
+            qDebug() << "Processing RegExp-Filter: " << itFList.key();
             if (!myvec->at(1).isEmpty())
             {
                 // Search RegExp seperately within the HTML source
@@ -206,6 +206,12 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
     /* Tag-Names must be in Capitals, always!! */
 
     // QHash<QString, QVector<QString>*>
+#ifndef _DEBUG
+    #pragma loop(ivdep)
+    #pragma loop(hint_parallel(0))
+#else
+    #pragma loop(no_vector)
+#endif
 
     while (!element.isNull()) // run through the whole webpage
     {
@@ -362,7 +368,7 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
                 }
                 else
                 {
-                    //qDebug() << "No full match with amtAttr:" << amtAttr << " bResVec.size()=" << bResVec.size();
+                    qDebug() << "No full match with amtAttr:" << amtAttr << " bResVec.size()=" << bResVec.size() << ", Content: " << element.toPlainText();
                 }
             }
             else
@@ -1536,6 +1542,15 @@ void Window::on_widgetPropertyBrowser_EnumValueChanged(QtProperty* myprop, int i
 
 void Window::on_actionExport_as_CSV_triggered()
 {
+    if (tbl_stats.size() == 0)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("The CSV file could not be written, there are no results to save! Scan the webapge for results first.");
+        msgBox.setWindowTitle("Error Writing Data to CSV");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.exec();
+        return;
+    }
     QString docPath = QStandardPaths::locate(QStandardPaths::DocumentsLocation, QString(), QStandardPaths::LocateDirectory)+"WebTooth-Results";
     QString tmpFileName = QFileDialog::getSaveFileName(this, "Save CSV File", docPath, "WebTooth CSV Result Files (*.csv);;Text Files (*.txt);;All Files (*.*)");
     if (tmpFileName.isEmpty())

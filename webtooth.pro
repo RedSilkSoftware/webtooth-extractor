@@ -20,7 +20,10 @@ win32:CONFIG(release, debug|release): LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQ
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-headd
 else:unix: LIBS += -L$$PWD/qtpropertybrowser/lib/ -lQt5Solutions_PropertyBrowser-head
 
-win32:QMAKE_CXXFLAGS_RELEASE += /GL /Ox
+win32:QMAKE_CXXFLAGS_RELEASE += /GL /Ox /GS
+# Optional, serves no purpose as of now
+#win32:QMAKE_CXXFLAGS_RELEASE += /Qpar /arch:AVX /Qvec-report:2 /Qpar-report:2
+
 unix:QMAKE_CXXFLAGS += -std=c++11 -O3
 QMAKE_LFLAGS_WINDOWS += /LTCG
 
