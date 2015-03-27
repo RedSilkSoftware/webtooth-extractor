@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=WebTooth-Extractor
-AppVersion=0.7 alpha
+AppVersion=0.7.1 alpha
 AppCopyright=Patrick Scheller, 2015
 ChangesAssociations=True
 SetupIconFile=..\Blue-block-small.ico
@@ -11,11 +11,11 @@ DefaultDirName={pf}\WebTooth-Extractor
 AllowRootDirectory=True
 DefaultGroupName=WebTooth-Extractor
 UninstallDisplayIcon={uninstallexe}
-VersionInfoVersion=0.6
+VersionInfoVersion=0.7.1
 VersionInfoCompany=ccompany
 VersionInfoDescription=ddescription
 VersionInfoProductName=pproduct name
-VersionInfoProductVersion=0.7
+VersionInfoProductVersion=0.7.1
 OutputDir=output
 OutputBaseFilename=WebTooth-Extractor_win64Setup
 ArchitecturesInstallIn64BitMode=x64
@@ -29,6 +29,7 @@ InfoBeforeFile=input/disclaimer_beforeFile.txt
 UserInfoPage=yes
 
 [Files]
+Source: "input\webtooth-help.html"; DestDir: "{app}"; Flags: ignoreversion
 Source: "input\icudt53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
 Source: "input\icuin53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
 Source: "input\icuuc53.dll"; DestDir: "{app}\input"; Flags: ignoreversion
