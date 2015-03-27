@@ -203,15 +203,9 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
 {
     //qDebug() << "scanAllWebElements 1";
     QWebElement element = parentElement.firstChild();
-    /* Tag-Names must be in Capitals, always!! */
+    // Tag-Names must be in Capitals, always!!
 
     // QHash<QString, QVector<QString>*>
-#ifndef _DEBUG
-    #pragma loop(ivdep)
-    #pragma loop(hint_parallel(0))
-#else
-    #pragma loop(no_vector)
-#endif
 
     while (!element.isNull()) // run through the whole webpage
     {
@@ -249,6 +243,10 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
                 {
                     qDebug() << "Tag found:" << myvec->at(1);
                     bResVec.push_back(1);
+                }
+                else
+                {
+                    //qDebug() << "No match of HTML-Tags: " << element.tagName() << " + " << myvec->at(1).toUpper();
                 }
                 // ATTRIBUTES multi
                 if (!myvec->at(2).isEmpty())
@@ -360,20 +358,20 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
                 }
 
                 // Do we have a full match of arguments? Then write to result table.
-                if (amtAttr == bResVec.size() && amtAttr > 0 && bResVec.size() > 0)
+                if ( (amtAttr-1) == bResVec.size() && amtAttr > 0 && bResVec.size() > 0)
                 {
                     qDebug() << "FullMatch found :) Element:" << element.toPlainText();
-                    qDebug() << "\t amtAttr:" << amtAttr << ", bResVec.size()=" << bResVec.size();
+                    qDebug() << "\t amtAttr:" << amtAttr << "-1 , bResVec.size()=" << bResVec.size();
                     tbl_stats.insert(itFList.key(), element.toPlainText());
                 }
                 else
                 {
-                    qDebug() << "No full match with amtAttr:" << amtAttr << " bResVec.size()=" << bResVec.size() << ", Content: " << element.toPlainText();
+                    //qDebug() << "No full match with amtAttr:" << amtAttr << " bResVec.size()=" << bResVec.size() << ", Content: " << element.toPlainText();
                 }
             }
             else
             {
-                //qDebug() << "ERROR: No Html-Tag Filter found, nothing to process";
+                qDebug() << "ERROR: No Html-Tag Filter found, nothing to process";
             }
             itFList++;
         }
@@ -1560,6 +1558,7 @@ void Window::on_actionExport_as_CSV_triggered()
     else
     {
         CSVFile mycsvfile;
+        qDebug() << "CSV Seperator is defined as:" << propDialog.getCsvSeparator();
         if (mycsvfile.WriteResultCSV(tbl_stats, tmpFileName, propDialog.getCsvSeparator()))
         {
             qDebug() << "CSV File has been successfully written :)";

@@ -38,7 +38,7 @@ Properties::Properties(QWidget *parent) :
     sProjectNotes(""),
     uProjectUrl(""),
     sLastModificationDate(""),
-    csvSeparator("")
+    csvSeparator(",")
 {
     ui->setupUi(this);
 

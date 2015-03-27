@@ -43,7 +43,7 @@ bool CSVFile::WriteResultCSV(const QMap<QString, QString> &tbl_result, const QSt
     {
         qDebug() << "Error: File" << csvfilepath << "does already exist!";
     }
-    else
+    //else
     {
         //qDebug() << "File" << prjfilepath << "does not yet exists";
         if (!csvFile.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -120,6 +120,7 @@ bool CSVFile::WriteResultCSV(const QMap<QString, QString> &tbl_result, const QSt
                      isSpecialCase = false;
                      it++;
                  }
+                 outstream << "Data from the WebTooth Extractor (c) by Patrick Scheller"  << csvSeparator << "2015" << endline;
                  outstream.flush(); // Write the data to the CSV file
                  bRes = true;
             }
