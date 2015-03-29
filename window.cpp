@@ -586,9 +586,19 @@ void Window::on_pushButtonAddFilter_clicked()
                     itm->setIcon(QIcon(":/img/res/Clipboard-icon.png"));
                     itm->setToolTip("HTML-Tag-Filter");
                     itm->setWhatsThis("tag");
-                    itm->setText(strlFilter.first()+QString::number(i));
-                    this->listWidgetFilters->addItem(itm);
-                    this->addFilter(itm->text(), eFilterType::HTMLTAG);
+                    QString tmpFilterLabel = "";
+                    tmpFilterLabel = strlFilter.first()+QString::number(i);
+                    itm->setText(tmpFilterLabel);
+                    QList<QListWidgetItem*> listwidgetMulti = this->listWidgetFilters->findItems(tmpFilterLabel, Qt::MatchExactly);
+                    if (listwidgetMulti.count() > 0)
+                    {
+                        qCritical() << "A filter with the label" << tmpFilterLabel << "already exists, will not create a new one for this.";
+                    }
+                    else
+                    {
+                        this->listWidgetFilters->addItem(itm);
+                        this->addFilter(itm->text(), eFilterType::HTMLTAG);
+                    }
                 }
             }
             else
@@ -635,10 +645,20 @@ void Window::on_pushButtonAddFilter_clicked()
                     QListWidgetItem *itm = new QListWidgetItem();
                     itm->setIcon(QIcon(":/img/res/Wand-icon.png"));
                     itm->setToolTip("RegExp-Filter");
-                    itm->setText(strlFilter.first()+QString::number(i));
                     itm->setWhatsThis("regexp");
-                    this->listWidgetFilters->addItem(itm);
-                    this->addFilter(itm->text(), eFilterType::REGEXP);
+                    QString tmpFilterLabel = "";
+                    tmpFilterLabel = strlFilter.first()+QString::number(i);
+                    itm->setText(tmpFilterLabel);
+                    QList<QListWidgetItem*> listwidgetMulti = this->listWidgetFilters->findItems(tmpFilterLabel, Qt::MatchExactly);
+                    if (listwidgetMulti.count() > 0)
+                    {
+                        qCritical() << "A filter with the label" << tmpFilterLabel << "already exists, will not create a new one for this.";
+                    }
+                    else
+                    {
+                        this->listWidgetFilters->addItem(itm);
+                        this->addFilter(itm->text(), eFilterType::REGEXP);
+                    }
                 }
             }
             else
