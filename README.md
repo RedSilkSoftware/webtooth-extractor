@@ -3,6 +3,7 @@ A cross-platform desktop tool to extract data from any webpage with filters in *
 
 Please support this project with a donation via flattr [![Flattr this git repo](http://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=patlecat&url=https%3A%2F%2Fgithub.com%2FRedSilkSoftware%2Fwebtooth-extractor%2F&&title=WebTooth-Extractor&language=cpp&tags=github&category=software) or PayPal [![Make a PayPal donation](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B8UFHJ6R5Z524). Let me know if you prefer other services to donate with.
 
+Discuss this application here: [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RedSilkSoftware/webtooth-extractor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ##Supported platforms & Operating Systems
 Generally only pure Qt classes and datatypes have been used, so this code should be runnable on all platforms that Qt supports. So far I can confirm the following platforms and OS to be tested:
