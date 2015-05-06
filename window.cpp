@@ -1005,7 +1005,7 @@ void Window::on_actionOpen_Project_triggered()
             QString filtName = "";
             QVector<QString>* filterattr = nullptr;
             int ic = 0;
-            qDebug() << "Amount of filters in filterData:" << filterData.size();
+            qDebug() << "on_actionOpen_Project_triggered: Amount of filters in filterData:" << filterData.size();
             while (itFilter.hasNext())
             {
                 itFilter.next();
@@ -1013,6 +1013,7 @@ void Window::on_actionOpen_Project_triggered()
                 qDebug() << "filterdata.key():" << itFilter.key() << ", ic:" << ic;
                 filtName = itFilter.key();
                 filterattr = itFilter.value();
+                qDebug() << "on_actionOpen_Project_triggered: Number of elements in this filter is" << itFilter.value()->size();
                 if (filterattr->at(0) == "tag")
                 {
                     qDebug() << "FilterName Tag:" << filtName;
@@ -1022,7 +1023,6 @@ void Window::on_actionOpen_Project_triggered()
                     itm->setWhatsThis("tag");
                     itm->setText(filtName);
                     this->listWidgetFilters->addItem(itm);
-                    this->addFilter(itm->text(), eFilterType::HTMLTAG);
                 }
                 else if (filterattr->at(0) == "reg")
                 {
@@ -1033,9 +1033,9 @@ void Window::on_actionOpen_Project_triggered()
                     itm->setWhatsThis("regexp");
                     itm->setText(filtName);
                     this->listWidgetFilters->addItem(itm);
-                    this->addFilter(itm->text(), eFilterType::REGEXP);
                 }
             }
+            qDebug() << "on_actionOpen_Project_triggered: total amount 'ic' = " << ic;
         }
         else
         {
@@ -1200,7 +1200,7 @@ void Window::removeAllFilters(void)
         ++itFList;
         //this->filterData.remove(itFList.key());
     }
-    qDebug() << "Clearing the QMap now...";
+    qDebug() << "removeAllFilters: Clearing the QMap now...";
     this->filterData.clear();
 }
 
