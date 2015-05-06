@@ -65,21 +65,54 @@ Properties::~Properties()
 // Save-Button
 void Properties::on_buttonBox_accepted()
 {
-    this->sUrlPath = ui->lineEdit_URL->text();
-    bCropThumb = ui->checkBoxCropThumb->isChecked();
-    thumbHeight = ui->spinBoxThumbHeight->value();
-    thumbWidth = ui->spinBoxThumbWidth->value();
-    sAuthor = ui->lineEditAuthorName->text();
-    sProjectNotes = ui->plainTextEditUserNotes->toPlainText();
-    csvSeparator = ui->lineEditCSVSeparator->text();
+    // SetDirty if user has entered/modified properties
+    if (this->sUrlPath != ui->lineEdit_URL->text())
+    {
+        this->sUrlPath = ui->lineEdit_URL->text();
+        this->isDirtyPropData = true;
+    }
+    if (bCropThumb != ui->checkBoxCropThumb->isChecked())
+    {
+        bCropThumb = ui->checkBoxCropThumb->isChecked();
+        this->isDirtyPropData = true;
+    }
+    if (thumbHeight != ui->spinBoxThumbHeight->value())
+    {
+        thumbHeight = ui->spinBoxThumbHeight->value();
+        this->isDirtyPropData = true;
+    }
+    if (thumbWidth != ui->spinBoxThumbWidth->value())
+    {
+        thumbWidth = ui->spinBoxThumbWidth->value();
+        this->isDirtyPropData = true;
+    }
+    if (sAuthor != ui->lineEditAuthorName->text())
+    {
+        sAuthor = ui->lineEditAuthorName->text();
+        this->isDirtyPropData = true;
+    }
+    if (sProjectNotes != ui->plainTextEditUserNotes->toPlainText())
+    {
+        sProjectNotes = ui->plainTextEditUserNotes->toPlainText();
+        this->isDirtyPropData = true;
+    }
+    if (csvSeparator != ui->lineEditCSVSeparator->text())
+    {
+        csvSeparator = ui->lineEditCSVSeparator->text();
+        this->isDirtyPropData = true;
+    }
 
-    hProjectData["projectauthor"] = sAuthor;
-    hProjectData["projecnotes"] = sProjectNotes;
-    hProjectData["projecturl"] = sUrlPath;
-    hProjectData["cropthumb"] = (bCropThumb ? "true" : "false");
-    hProjectData["thumbwidth"] = QString::number(thumbWidth);
-    hProjectData["thumbheight"] = QString::number(thumbHeight);
-    hProjectData["csvseparator"] = csvSeparator;
+    if (this->isDirtyPropData)
+    {
+        hProjectData["projectauthor"] = sAuthor;
+        //qDebug() << "Author has been modified:" << hProjectData["projectauthor"];
+        hProjectData["projecnotes"] = sProjectNotes;
+        hProjectData["projecturl"] = sUrlPath;
+        hProjectData["cropthumb"] = (bCropThumb ? "true" : "false");
+        hProjectData["thumbwidth"] = QString::number(thumbWidth);
+        hProjectData["thumbheight"] = QString::number(thumbHeight);
+        hProjectData["csvseparator"] = csvSeparator;
+    }
 }
 
 // Load after an OpenFile
@@ -92,16 +125,18 @@ void Properties::LoadData(void)
     thumbWidth = hProjectData["thumbwidth"].toShort();
     thumbHeight = hProjectData["thumbheight"].toShort();
     csvSeparator = hProjectData["csvseparator"];
+    sLastModificationDate = hProjectData["projectmodified"];
     //qDebug() << "Properties:" << sAuthor << ", " << sProjectNotes << ", " << sUrlPath << ", " << (bCropThumb ? "true" : "false") << ", "
     //         << QString::number(thumbWidth) << ", " << QString::number(thumbHeight);
 
     ui->lineEdit_URL->setText(this->sUrlPath);
-    ui->checkBoxCropThumb->setChecked(bCropThumb);
-    ui->spinBoxThumbHeight->setValue(thumbHeight);
-    ui->spinBoxThumbWidth->setValue(thumbWidth);
-    ui->lineEditAuthorName->setText(sAuthor);
-    ui->plainTextEditUserNotes->setPlainText(sProjectNotes);
-    ui->lineEditCSVSeparator->setText(csvSeparator);
+    ui->checkBoxCropThumb->setChecked(this->bCropThumb);
+    ui->spinBoxThumbHeight->setValue(this->thumbHeight);
+    ui->spinBoxThumbWidth->setValue(this->thumbWidth);
+    ui->lineEditAuthorName->setText(this->sAuthor);
+    ui->plainTextEditUserNotes->setPlainText(this->sProjectNotes);
+    ui->lineEditCSVSeparator->setText(this->csvSeparator);
+    ui->lineEditLastModificationDate->setText(this->sLastModificationDate);
 }
 
 void Properties::on_toolButton_clicked()
@@ -208,4 +243,42 @@ void Properties::setCsvSeparator(const QString &value)
 {
     csvSeparator = value;
 }
+
+bool Properties::isDirtyProp()
+{
+    return (this->isDirtyPropData);
+}
+
+bool Properties::unsetDirtyProp()
+{
+    this->isDirtyPropData = false;
+    return (this->isDirtyPropData);
+}
+
+void Properties::ResetProperties()
+{
+    this->sUrlPath = "";
+    this->bCropThumb = true;
+    this->thumbHeight = 500;
+    this->thumbWidth = 300;
+    this->sAuthor = "";
+    this->sProjectNotes = "";
+    this->csvSeparator = ",";
+    this->sLastModificationDate = "";
+
+    this->on_buttonBox_rejected();
+}
+
+// If Cancel/Rejected then reset the previous values in the GUI
+void Properties::on_buttonBox_rejected()
+{
+    ui->lineEdit_URL->setText(this->sUrlPath);
+    ui->checkBoxCropThumb->setChecked(this->bCropThumb);
+    ui->spinBoxThumbHeight->setValue(this->thumbHeight);
+    ui->spinBoxThumbWidth->setValue(this->thumbWidth);
+    ui->lineEditAuthorName->setText(this->sAuthor);
+    ui->plainTextEditUserNotes->setPlainText(this->sProjectNotes);
+    ui->lineEditCSVSeparator->setText(this->csvSeparator);
+}
+
 

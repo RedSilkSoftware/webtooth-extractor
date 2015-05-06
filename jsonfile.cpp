@@ -60,7 +60,7 @@ bool JSONFile::readJsonFile(t_filterdata& filterlist, QHash<QString, QString>& p
         //qDebug() << "File" << prjfilepath << "exists";
     }
     QJsonDocument jdoc;
-    if (projFile.open(QIODevice::ReadOnly))
+    if (projFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         //qDebug() << "JSON-File could be opened";
         jdoc = QJsonDocument::fromJson(projFile.readAll(),&jerror);
@@ -97,6 +97,8 @@ bool JSONFile::readJsonFile(t_filterdata& filterlist, QHash<QString, QString>& p
 
     // typedef QHash<QString, QVector<QString>*> t_filterdata;
     QJsonArray filters = rootObj["projectdata"].toArray();
+    qDebug() << "No. of filters found in the project file:" << filters.size();
+    int ideb = 0; // For Debug purpose
     for(auto&& filterItem: filters)
     {
         //qDebug() << "XXX - filterItem";
@@ -112,6 +114,9 @@ bool JSONFile::readJsonFile(t_filterdata& filterlist, QHash<QString, QString>& p
             if (filter["filtertype"].toString() == "tag")
             {
                 //qDebug() << "Filtertype:" << filter["filtertype"].toString();
+//                qDebug() << "  > Filter-Sizes:" << attrProp["H Tag Name"].toString().size() << "," << attrProp["H ID Name"].toString().size() << "," << attrProp["H Class Name"].toString().size()
+//                         << "," << attrProp["P Tag Name"].toString().size() << "," << attrProp["P Attribute Name"].toString().size() << "," << attrProp["P ID Name"].toString().size()
+//                         << "," << attrProp["P Class Name"].toString().size();
                 vattrlist->push_back(filter["filtertype"].toString());
                 vattrlist->push_back(attrProp["H Tag Name"].toString());
                 vattrlist->push_back(attrProp["H Attribute Name"].toString());
@@ -131,10 +136,14 @@ bool JSONFile::readJsonFile(t_filterdata& filterlist, QHash<QString, QString>& p
                 vattrlist->push_back(attrProp["Regular Expression"].toString());
             }
         }
+        qDebug() << "vattrList contains no. of elements:" << vattrlist->size();
         filterlist.insert(filter["filtername"].toString(), vattrlist);
         //qDebug() << "YYY - End of JSON-Read";
         bRes = true;
+        ideb++;
     }
+    qDebug() << "iDeb count of loops:" << ideb;
+    qDebug() << "No. of elements in Filterlist:" << filterlist.size();
     return(bRes);
 }
 
@@ -146,7 +155,7 @@ bool JSONFile::writeJsonFile(const t_filterdata& filterlist, const QHash<QString
     qDebug() << "Current Path: " << dir.currentPath() << flush;
     //QFileInfo myfileInfo;
     QFile projFile(prjfilepath);
-    if (!projFile.open(QIODevice::WriteOnly))
+    if (!projFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qWarning("Couldn't open the project file.");
         return(bRes);
@@ -158,6 +167,8 @@ bool JSONFile::writeJsonFile(const t_filterdata& filterlist, const QHash<QString
     while (itPrjData.hasNext())
     {
         itPrjData.next();
+//        if (itPrjData.key() == "projectauthor")
+//            qDebug() << "ProjectAuthor will be written to JSON:" << itPrjData.value();
         rootObj[itPrjData.key()] = itPrjData.value();
     }
     //rootObj["projectapp"] = "WebTooth-Extractor";

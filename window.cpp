@@ -206,6 +206,7 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
     // Tag-Names must be in Capitals, always!!
 
     // QHash<QString, QVector<QString>*>
+    QMap<QString, unsigned short> map_occurrence;
 
     while (!element.isNull()) // run through the whole webpage
     {
@@ -215,18 +216,24 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
         auto itFList = this->filterData.constBegin();
         while (itFList != filterData.constEnd())
         {
+            //QVector<QString>* myvec = itFList.value();
             auto myvec = itFList.value();
-            if (myvec->size() == 0)
+
+            if (myvec->size() == 0) // Skip if empty
                 continue;
 
             int amtAttr = 0;
+            qDebug() << "myvec.size:" << myvec->size();
             // How many Search Arguments has the user entered?
-            for (int i=0; i < myvec->size(); i++)
+            for (int i = 0; i < myvec->size(); i++)
             {
-                if (!myvec->at(i).isEmpty())
+                if (myvec->at(i).size() > 0 && myvec->at(i) != "tag")
+                {
+                    qDebug() << "amtArr Filter-Field greater 0:" << myvec->at(i);
                     amtAttr++;
+                }
             }
-            if (amtAttr > 2)
+            if (amtAttr > 1)
                 amtAttr = amtAttr - 2; // Minus both Occurrence Attributes!
             else
                 amtAttr = 0;
@@ -243,6 +250,9 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
                 {
                     qDebug() << "Tag found:" << myvec->at(1);
                     bResVec.push_back(1);
+                    //qDebug() << "Occurrence Amount:" << myvec->at(9);
+                    //qDebug() << "Occurrence Function:" << myvec->at(10);
+
                 }
                 else
                 {
@@ -357,12 +367,24 @@ void Window::scanAllWebElements(const QWebElement& parentElement, int& icounter)
                     }
                 }
 
-                // Do we have a full match of arguments? Then write to result table.
-                if ( (amtAttr-1) == bResVec.size() && amtAttr > 0 && bResVec.size() > 0)
+                //** Do we have a full match of arguments? Then write to result table. **
+                if ( (amtAttr) == bResVec.size() && amtAttr > 0 && bResVec.size() > 0)
                 {
+                    if (myvec->at(10) == "0") // n-th occurrence
+                    {
+                        qDebug() << "n-th occurrence is:" << myvec->at(9);
+                    }
+                    else if (myvec->at(10) == "1") // occurrence amount
+                    {
+                        qDebug() << "occurrence amount:" << myvec->at(9);
+                    }
                     qDebug() << "FullMatch found :) Element:" << element.toPlainText();
                     qDebug() << "\t amtAttr:" << amtAttr << "-1 , bResVec.size()=" << bResVec.size();
                     tbl_stats.insert(itFList.key(), element.toPlainText());
+                }
+                else if (bResVec.size() > 0)
+                {
+                    qDebug() << "No full match: amtAttr:" << amtAttr << "-1 , bResVec.size()=" << bResVec.size();
                 }
                 else
                 {
@@ -704,11 +726,7 @@ void Window::on_pushButtonAddFilter_clicked()
             QMessageBox::critical(this, "Error Adding Filters", "The syntax for adding a filter is incomplete!");
         }
     }
-    isDirtyData = true;
-    QString tmpTitle = this->windowTitle();
-    if (tmpTitle.right(1) != "*")
-        this->setWindowTitle(tmpTitle+"*");
-    this->actionSave_Project->setEnabled(true);
+    this->setDirty();
 
     lineEditNewLabel->selectAll(); //Preselect it for convenience serial use by keyboard
 }
@@ -895,6 +913,23 @@ void Window::setupPropertyBrowsers(void)
     dockWidgetProp->setLayout(verticalLayoutProp);
 }
 
+bool Window::setDirty()
+{
+    isDirtyData = true;
+    QString tmpTitle = this->windowTitle();
+    if (tmpTitle.right(1) != "*")
+    {
+        this->setWindowTitle(tmpTitle+"*");
+        this->actionSave_Project->setEnabled(true);
+    }
+    return (isDirtyData);
+}
+
+bool Window::isDirty()
+{
+    return (this->isDirtyData);
+}
+
 void Window::on_lineEditNewLabel_textChanged(const QString &arg1)
 {
     if (arg1.isEmpty())
@@ -912,6 +947,41 @@ void Window::on_lineEditNewLabel_returnPressed()
 // Read the project file in
 void Window::on_actionOpen_Project_triggered()
 {
+    if (isDirtyData)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("The project has been modified.");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setInformativeText("Do you want to save your changes before loading another project or discard them alltogether?");
+        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Save);
+        int ret = msgBox.exec();
+
+        switch (ret)
+        {
+            case QMessageBox::Save:
+              this->on_actionSave_Project_triggered();
+              break;
+            case QMessageBox::Discard:
+                // RemoveAllFilters
+                this->removeAllFilters();
+                // Clear the QListWidget
+                this->clearListWidget();
+                // Clear strCurrentProjectFileName
+                this->strCurrentProjectFileName = "";
+                // Display new Project name in Window title
+                this->setWindowTitle(initWindowTitle);
+                this->actionSave_Project->setEnabled(false);
+              break;
+            case QMessageBox::Cancel:
+              // Cancel was clicked, do nothing and exit the method
+              return;
+              break;
+            default:
+              // should never be reached
+              break;
+        }
+    }
     QString docPath = QStandardPaths::locate(QStandardPaths::DocumentsLocation, QString(), QStandardPaths::LocateDirectory);
     qDebug() << "QStandardPaths::DocumentsLocation: [" << docPath << "]";
     //QString homeLocation = QStandardPaths::locate(QStandardPaths::HomeLocation, QString(), QStandardPaths::LocateDirectory);
@@ -945,7 +1015,7 @@ void Window::on_actionOpen_Project_triggered()
                 filterattr = itFilter.value();
                 if (filterattr->at(0) == "tag")
                 {
-                    qDebug() << "FilterName 2:" << filtName;
+                    qDebug() << "FilterName Tag:" << filtName;
                     QListWidgetItem *itm = new QListWidgetItem();
                     itm->setIcon(QIcon(":/img/res/Clipboard-icon.png"));
                     itm->setToolTip("HTML-Tag-Filter");
@@ -956,7 +1026,7 @@ void Window::on_actionOpen_Project_triggered()
                 }
                 else if (filterattr->at(0) == "reg")
                 {
-                    qDebug() << "FilterName 2:" << filtName;
+                    qDebug() << "FilterName Reg:" << filtName;
                     QListWidgetItem *itm = new QListWidgetItem();
                     itm->setIcon(QIcon(":/img/res/Wand-icon.png"));
                     itm->setToolTip("RegExp-Filter");
@@ -1230,10 +1300,7 @@ void Window::on_widgetPropertyBrowser_StringValueChanged(QtProperty* myprop, con
             this->labelPropertyError->show();
         }
     }
-    isDirtyData = true;
-    QString tmpTitle = this->windowTitle();
-    if (tmpTitle.right(1) != "*")
-        this->setWindowTitle(tmpTitle+"*");
+    this->setDirty();
 }
 
 /*
@@ -1262,36 +1329,29 @@ void Window::on_actionNew_Project_triggered()
               this->on_actionSave_Project_triggered();
               break;
           case QMessageBox::Discard:
-                // RemoveAllFilters
-                this->removeAllFilters();
-                // Clear the QListWidget
-                this->clearListWidget();
-                // Clear strCurrentProjectFileName
-                this->strCurrentProjectFileName = "";
-                // Display new Project name in Window title
-                this->setWindowTitle(initWindowTitle);
-                this->actionSave_Project->setEnabled(false);
+              // Proceed with the reset below
               break;
           case QMessageBox::Cancel:
-              // Cancel was clicked, do nothing
+              // Cancel was clicked, do nothing and exit
+              return;
               break;
           default:
               // should never be reached
               break;
         }
     }
-    else
-    {
-        // RemoveAllFilters
-        this->removeAllFilters();
-        // Clear the QListWidget
-        this->clearListWidget();
-        // Clear strCurrentProjectFileName
-        this->strCurrentProjectFileName = "";
-        // Display new Project name in Window title
-        this->setWindowTitle(initWindowTitle);
-        this->actionSave_Project->setEnabled(false);
-    }
+
+    // RemoveAllFilters
+    this->removeAllFilters();
+    // Clear the QListWidget
+    this->clearListWidget();
+    // Clear strCurrentProjectFileName
+    this->strCurrentProjectFileName = "";
+    // Display new Project name in Window title
+    this->setWindowTitle(initWindowTitle);
+    this->actionSave_Project->setEnabled(false);
+    // Reset the properties to init values
+    propDialog.ResetProperties();
 }
 
 void Window::on_toolButtonClipBoard_clicked()
@@ -1317,6 +1377,7 @@ void Window::on_toolButtonLoadLocalHTML_clicked()
 
     if (!urlpath.isEmpty())
         this->lineEditURL->setText(urlpath.toString());
+    this->lineEditURL->setFocus();
 }
 
 void Window::on_toolButtonHome_clicked()
@@ -1341,12 +1402,16 @@ void Window::on_toolButtonReload_clicked()
 
 void Window::on_actionProperties_triggered()
 {
-    propDialog.setSLastModificationDate(propDialog.hProjectData["projectmodified"]);
-
+    // Open the Properties dialog
     switch (propDialog.exec())
     {
     case QDialog::Accepted:
-        this->lineEditURL->setText(propDialog.getSUrlPath());
+        if (propDialog.isDirtyProp())
+        {
+            this->lineEditURL->setText(propDialog.getSUrlPath());
+            this->setDirty();
+            propDialog.unsetDirtyProp();
+        }
         break;
     case QDialog::Rejected:
         // Do nothing
@@ -1534,10 +1599,7 @@ void Window::on_widgetPropertyBrowser_IntValueChanged(QtProperty* myprop, int iV
     {
          myvec->replace(9, QString::number(iValue));
     }
-    isDirtyData = true;
-    QString tmpTitle = this->windowTitle();
-    if (tmpTitle.right(1) != "*")
-        this->setWindowTitle(tmpTitle+"*");
+    this->setDirty();
 
 
 }
@@ -1550,12 +1612,7 @@ void Window::on_widgetPropertyBrowser_EnumValueChanged(QtProperty* myprop, int i
     {
          myvec->replace(10, QString::number(iValue));
     }
-    isDirtyData = true;
-    QString tmpTitle = this->windowTitle();
-    if (tmpTitle.right(1) != "*")
-        this->setWindowTitle(tmpTitle+"*");
-
-
+    this->setDirty();
 }
 
 void Window::on_actionExport_as_CSV_triggered()

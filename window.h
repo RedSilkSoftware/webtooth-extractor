@@ -50,6 +50,8 @@ public:
     bool readProjectFile();
     bool saveProjectFile();
     //static void threadLoadUrl(QUrl url);
+    bool setDirty();
+    bool isDirty();
 
     typedef QHash<QString, QVector<QString>*> t_filterdata;
     enum class eFilterType {

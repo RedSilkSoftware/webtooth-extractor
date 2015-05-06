@@ -39,6 +39,9 @@ public:
     ~Properties();
 
     void LoadData(void);
+    bool isDirtyProp();
+    bool unsetDirtyProp(); // Reset to not dirty
+    void ResetProperties(); // Reset all properties to default values
 
     QString getSUrlPath() const;
     void setSUrlPath(const QString &value);
@@ -64,12 +67,15 @@ public:
     QString getCsvSeparator() const;
     void setCsvSeparator(const QString &value);
 
+
 private slots:
     void on_buttonBox_accepted();
 
     void on_toolButton_clicked();
 
     void on_checkBoxCropThumb_toggled(bool checked);
+
+    void on_buttonBox_rejected();
 
 private:
     Ui::Properties *ui;
@@ -84,6 +90,7 @@ private:
     QString sProjectNotes;
     QUrl uProjectUrl;
     QString csvSeparator;
+    bool isDirtyPropData;
 };
 
 #endif // PROPERTIES_H
