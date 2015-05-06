@@ -17,9 +17,9 @@ Generally only pure Qt classes and datatypes have been used, so this code should
 ##ToDo List
 - [ ] Compilable and runnable on recent Linux-64bit distros (released in 2014) - *Help needed*
 - [ ] Compilable and runnable on recent Mac OS X (10.9) - *Help needed*
-- [x] Implement Export of CSV
 - [ ] Implement Export of JSON
 - [ ] Implement the Occurrence functionality, after more reflection and possibly *feedback from users*
+- [ ] Implement scriptable filters with ChaiScript
 
 ##Build Infos
 * Build the QPropertyBrowser library first with the buildlib.pro file in its own directory. Then test it with one of the example projects, for example the Demo.
