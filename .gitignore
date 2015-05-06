@@ -39,3 +39,9 @@ bin/release/webtooth_thumbnail.png
 bin/release/webtooth_resource.res
 *.lib
 *.res
+*.tlog
+*.suo
+*.user
+webtooth.vcxproj.filters
+webtooth.sdf
+webtooth.opensdf
