@@ -1,4 +1,6 @@
 # WebTooth-Extractor
+
+[![Join the chat at https://gitter.im/RedSilkSoftware/webtooth-extractor](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/RedSilkSoftware/webtooth-extractor?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A cross-platform desktop tool to extract data from any webpage with filters in **1 click**. You can create filters with *HTML Tags*, IDs and attributes or by writing *Regular-Expressions*. Once the filters are setup you can extract the data as many times as you like with just 1 click (as long as the structure of the page doesn't change). Then you can simply copy&paste them into your favorite spreadsheet program or export them as CSV or JSON.
 
 Please support this project with a donation via flattr [![Flattr this git repo](http://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=patlecat&url=https%3A%2F%2Fgithub.com%2FRedSilkSoftware%2Fwebtooth-extractor%2F&&title=WebTooth-Extractor&language=cpp&tags=github&category=software) or PayPal [![Make a PayPal donation](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B8UFHJ6R5Z524). Let me know if you prefer other services to donate with.
